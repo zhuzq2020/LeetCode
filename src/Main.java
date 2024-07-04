@@ -1,22 +1,9 @@
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] points = {{3, 5}, {2, 6}, {1, 2}};
-        Arrays.sort(points, new Comparator<int[]>() {
-            public int compare(int[] point1, int[] point2) {
-                if (point1[0] > point2[0]) {
-                    return 1;
-                } else if (point1[0] < point2[0]) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            }
-        });
-        for(int i=0;i<3;i++){
-            System.out.println(points[i][0]);
-        }
+        char[][] board={{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
+        Solution solution=new Solution();
+        solution.solve(board);
     }
 }

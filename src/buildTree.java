@@ -1,27 +1,20 @@
 public class buildTree {
-    public static TreeNode buildTree(int[] inorder, int[] postorder) {
-        TreeNode root=cal(inorder,0, inorder.length-1,postorder,0,postorder.length-1 );
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        TreeNode root=cal(preorder,0, preorder.length,inorder,0,inorder.length );
         return root;
     }
-    public static TreeNode cal(int[] inorder, int lefti, int righti, int[] postorder, int leftp, int rightp) {
-        if(leftp==rightp){
-            return new TreeNode(postorder[leftp]);
-        }else if(leftp>rightp){
+    public TreeNode cal(int[] preorder,int leftp,int rightp, int[] inorder,int lefti,int righti) {
+        if(leftp>=rightp||lefti>=righti){
             return null;
         }
-        TreeNode root=new TreeNode(postorder[rightp]);
-        int i=lefti;
-        for(;i<righti;i++){
-            if(postorder[rightp]==inorder[i]){
+        TreeNode root=new TreeNode(preorder[leftp]);
+        for(int i=lefti;i<=righti;i++){
+            if(preorder[leftp]==inorder[i]){
                 break;
             }
         }
-        root.left=cal(inorder,lefti, i-1,postorder,leftp,leftp+i-1-lefti );
-        root.right=cal(inorder,i+1, righti,postorder,leftp+i-1-lefti,rightp-1 );
+        root.left=cal(preorder,0, preorder.length-1,inorder,0,inorder.length-1 );
+        root.right=cal(preorder,0, preorder.length-1,inorder,0,inorder.length-1 );
         return root;
-    }
-
-    public static void main(String[] args) {
-        TreeNode root=buildTree(new int[]{3,9,20,15,7},new int[]{9,3,15,20,7});
     }
 }
